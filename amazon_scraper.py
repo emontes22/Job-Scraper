@@ -3,14 +3,14 @@ from bs4 import BeautifulSoup
 import pandas as pd
 from time import sleep
 
-# To allow automated access to Amazondata
+# To allow automated access to Amazon data
 headers = {
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36',
     'Accept-Language': 'en-US, en;q=0.5'
 }
 
-search_item = 'raspberry pi'.replace(' ', '+')
-URL = 'https://www.amazon.com/s?k={0}'.format(search_item)
+item_to_search = input('Enter an item to search: ').replace(' ', '+')
+URL = 'https://www.amazon.com/s?k={0}'.format(item_to_search)
 
 items = []
 
@@ -56,4 +56,4 @@ for i in range(1, 11):
 # Pandas to format the items and save it to a csv file
 df = pd.DataFrame(items, columns=[
                   'Product', 'Rating Stars', 'Rating Count', 'Price', 'Product Link'])
-df.to_csv('{0}.csv'.format(search_item), index=False)
+df.to_csv('{0}.csv'.format(item_to_search), index=False)
